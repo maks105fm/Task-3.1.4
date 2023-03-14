@@ -1,18 +1,26 @@
 package ru.itmentor.spring.boot_security.demo.model;
 
-import com.fasterxml.jackson.annotation.JsonAnyGetter;
-import com.fasterxml.jackson.annotation.JsonAnySetter;
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.data.annotation.Id;
 import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Set;
+
 
 @Entity
 @Table(name = "roles")
 public class Role implements GrantedAuthority {
+
+    @Override
+    public String toString() {
+        String s;
+        if (name == "ROLE_USER") {
+            s = "User"; }
+        else s = "Admin";
+        return s;
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,15 +33,15 @@ public class Role implements GrantedAuthority {
     @ManyToMany(mappedBy = "roles")
     private List<User> users;
 
-    public void setUsers(List<User> users){
+    public void setUsers(List<User> users) {
         this.users = users;
     }
 
-
     @Override
-    public String getAuthority(){
+    public String getAuthority() {
         return getRole();
     }
+
     public Role(){
     }
 
@@ -45,6 +53,5 @@ public class Role implements GrantedAuthority {
     public String getRole() {
         return name;
     }
-
 
 }

@@ -5,10 +5,10 @@ import ru.itmentor.spring.boot_security.demo.model.User;
 import java.util.List;
 
 public interface UserService {
-    void addUser(User user);
-    List<User> getUsers();
-    User getUserById(long id);
-    void updateUser(User user);
-    void deleteUser(long id);
-
+    void save(User user);
+    List<User> getAllUsers();
+    User getUserById(Long id);
+    void deleteUserById(Long id);
+    void updateUser(Long id, User user);
+    User getUserByEmail(String email);
 }
