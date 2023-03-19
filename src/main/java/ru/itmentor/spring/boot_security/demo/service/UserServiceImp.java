@@ -14,7 +14,7 @@ import java.util.List;
 
 @Service
 public class UserServiceImp implements UserService, UserDetailsService {
-
+// не имплементиться от Юзер ДитейлСервисе
     private final UserRepository userRepository;
     private final BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 

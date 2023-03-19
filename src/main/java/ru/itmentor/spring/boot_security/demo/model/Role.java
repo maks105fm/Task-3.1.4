@@ -13,15 +13,6 @@ import java.util.Set;
 @Table(name = "roles")
 public class Role implements GrantedAuthority {
 
-    @Override
-    public String toString() {
-        String s;
-        if (name == "ROLE_USER") {
-            s = "User"; }
-        else s = "Admin";
-        return s;
-    }
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Setter
@@ -30,6 +21,7 @@ public class Role implements GrantedAuthority {
 
     @Column(name = "name")
     private String name;
+
     @ManyToMany(mappedBy = "roles")
     private List<User> users;
 
@@ -54,4 +46,8 @@ public class Role implements GrantedAuthority {
         return name;
     }
 
+    @Override
+    public String toString() {
+        return name;
+    }
 }
