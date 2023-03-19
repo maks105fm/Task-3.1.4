@@ -18,6 +18,7 @@ public class User implements UserDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+
     @Column(name = "name")
     private String name;
 
@@ -89,6 +90,7 @@ public class User implements UserDetails {
         return id;
     }
 
+
     public String getName() {
         return name;
     }
@@ -104,4 +106,5 @@ public class User implements UserDetails {
     public List<Role> getRoles() {
         return roles;
     }
+
 }

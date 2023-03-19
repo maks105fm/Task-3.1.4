@@ -24,24 +24,6 @@ public class AdminController {
     }
 
 
-
-    /*@GetMapping("/new")
-    public String addUser(Model model) {
-        model.addAttribute("user", new User());
-        model.addAttribute("roles", roleService.getAllRoles());
-        return "create";
-    }
-    @GetMapping("/{id}/update")
-    public String updateUser(@PathVariable("id") Long id, Model model){
-        model.addAttribute("user", userService.getUserById(id));
-        model.addAttribute("roles", roleService.getAllRoles());
-        return "update";
-    }*/
-
-
-
-
-
     @GetMapping
     public String getAllUsers(Model model, Principal principal){
         model.addAttribute("admin", userService.getUserByEmail(principal.getName()));
@@ -63,7 +45,6 @@ public class AdminController {
                              @RequestParam("listRoles") List<String> values){
         user.setRoles(roleService.listRole(values));
         userService.updateUser(id, user);
-        System.out.println(user.getName());
         return "redirect:/admin";
     }
 
