@@ -14,7 +14,7 @@ import java.util.List;
 
 @Service
 public class UserServiceImp implements UserService, UserDetailsService {
-// не имплементиться от Юзер ДитейлСервисе
+
     private final UserRepository userRepository;
     private final BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
@@ -25,22 +25,16 @@ public class UserServiceImp implements UserService, UserDetailsService {
 
     @Transactional
     @Override
-    public void save(User user) {
+    public void saveUser(User user) {
+        System.out.println(user.getUsername());
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         userRepository.save(user);
     }
 
     @Transactional(readOnly = true)
     @Override
-    public List<User> getAllUsers() {
+    public List<User> allUsers() {
         return userRepository.findAll();
-    }
-
-    @Transactional
-    @Override
-    public User getUserById(Long id) {
-        return userRepository.findById(id)
-                .orElse(null);
     }
 
     @Transactional
